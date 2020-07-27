@@ -1,6 +1,6 @@
 plugins {
 	id 'fabric-loom' version '0.5-SNAPSHOT'
-	id "com.jfrog.bintray" version "1.+"
+	id "com.jfrog.bintray" version "1.7"
 	id "maven-publish"
 }
 
@@ -54,7 +54,7 @@ bintray {
         	name = 'obsidiplates-fabric'
         	licenses = ['GPL-3.0-or-later']
         	vcsUrl = 'https://github.com/BoogieMonster1O1/obsidiplates-fabric'
-		version {
+			version {
         		name = 'Obsidiplates 0.1.0'
         		desc = 'Obsidiplates for Fabric, version 0.1.0'
         		released  = new Date()
@@ -66,12 +66,12 @@ publishing {
     publications {
         mavenJava(MavenPublication) {
             artifact(sourcesJar) {
-		builtBy remapSourcesJar
-	    }
-	    artifact(remapJar) {
-		builtBy remapJar
-	    }
-	    artifact javadocJar
+				builtBy remapSourcesJar
+	    	}
+	    	artifact(remapJar) {
+				builtBy remapJar
+	    	}
+
             groupId 'io.github.boogiemonster1o1'
             artifactId 'obsidiplates-fabric'
             version '0.1.0'
