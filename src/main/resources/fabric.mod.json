@@ -3,23 +3,24 @@
   "id": "modid",
   "version": "${version}",
 
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "Obsidiplates",
+  "description": "Obsidian and mossy cobblestone pressure plates",
   "authors": [
-    "Me!"
+    "BoogieMonster1O1"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://github.com/BoogieMonster1O1/obsidiplates-fabric",
+    "sources": "https://github.com/BoogieMonster1O1/obsidiplates-fabric",
+    "issues": "https://github.com/BoogieMonster1O1/obsidiplates-fabric/issues"
   },
 
-  "license": "CC0-1.0",
+  "license": "GPL-3.0-or-later",
   "icon": "assets/modid/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.fabricmc.example.ExampleMod"
+      "io.github.boogiemonster1o1.obsidiplates.ObsidiplatesInitializer"
     ]
   },
   "mixins": [
@@ -32,6 +33,6 @@
     "minecraft": "1.16.x"
   },
   "suggests": {
-    "flamingo": "*"
+    "modmenu": "*"
   }
 }
