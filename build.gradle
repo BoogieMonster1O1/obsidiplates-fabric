@@ -1,26 +1,22 @@
 plugins {
-	id 'fabric-loom' version '0.4-SNAPSHOT'
-	id 'maven-publish'
+	id 'fabric-loom' version '0.5-SNAPSHOT'
+	id "com.jfrog.bintray" version "1.+"
+	id "maven-publish"
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
-archivesBaseName = project.archives_base_name
-version = project.mod_version
-group = project.maven_group
+archivesBaseName = "obsidiplates-fabric"
+version = "0.1.0"
+group = "io.github.boogiemonster1o1"
 
 dependencies {
-	//to change the versions see the gradle.properties file
-	minecraft "com.mojang:minecraft:${project.minecraft_version}"
-	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
-	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-
-	// Fabric API. This is technically optional, but you probably want it anyway.
-	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-
-	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
-	// You may need to force-disable transitiveness on them.
+	minecraft "com.mojang:minecraft:1.16.1"
+	mappings "net.fabricmc:yarn:1.16.1+build.21:v2"
+	modImplementation "net.fabricmc:fabric-loader:0.9.0+build.204"
+	modImplementation "io.github.prospector:modmenu:1.14.5+build.30"
+	modApi "net.fabricmc.fabric-api:fabric-api:0.16.0+build.384-1.16.1"
 }
 
 processResources {
@@ -36,16 +32,10 @@ processResources {
 	}
 }
 
-// ensure that the encoding is set to UTF-8, no matter what the system default is
-// this fixes some edge cases with special characters not displaying correctly
-// see http://yodaconditions.net/blog/fix-for-java-file-encoding-problems-with-gradle.html
 tasks.withType(JavaCompile) {
 	options.encoding = "UTF-8"
 }
 
-// Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
-// if it is present.
-// If you remove this task, sources will not be generated.
 task sourcesJar(type: Jar, dependsOn: classes) {
 	classifier = "sources"
 	from sourceSets.main.allSource
@@ -55,23 +45,59 @@ jar {
 	from "LICENSE"
 }
 
-// configure the maven publication
-publishing {
-	publications {
-		mavenJava(MavenPublication) {
-			// add all the jars that should be included when publishing to maven
-			artifact(remapJar) {
-				builtBy remapJar
-			}
-			artifact(sourcesJar) {
-				builtBy remapSourcesJar
-			}
-		}
-	}
-
-	// select the repositories you want to publish to
-	repositories {
-		// uncomment to publish to the local maven
-		// mavenLocal()
-	}
+bintray {
+	user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
+	key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
+    	publications = ['mavenJava'] 
+    	pkg {
+        	repo = 'cool-mods'
+        	name = 'obsidiplates-fabric'
+        	licenses = ['GPL-3.0-or-later']
+        	vcsUrl = 'https://github.com/BoogieMonster1O1/obsidiplates-fabric'
+		version {
+        		name = 'Obsidiplates 0.1.0'
+        		desc = 'Obsidiplates for Fabric, version 0.1.0'
+        		released  = new Date()
+    		}
+    	}
 }
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifact(sourcesJar) {
+		builtBy remapSourcesJar
+	    }
+	    artifact(remapJar) {
+		builtBy remapJar
+	    }
+	    artifact javadocJar
+            groupId 'io.github.boogiemonster1o1'
+            artifactId 'obsidiplates-fabric'
+            version '0.1.0'
+            pom.withXml {
+                def root = asNode()
+                root.appendNode('description', 'Obsidiplates Fabric')
+                root.appendNode('name', 'Obsidiplates Fabric')
+                root.appendNode('url', 'https://site_for_lib.tld')
+                root.children().last() + pomConfig
+            }
+	    
+        }
+    }
+}
+
+def pomConfig = {
+    licenses {
+        license {
+            name "GPL-3.0-or-later"
+            url "https://www.gnu.org/licenses/gpl-3.0.en.html"
+            distribution "repo"
+        }
+    }
+    
+    scm {
+       url "https://github.com/BoogieMonster1O1/obsidiplates-fabric"
+    }
+}
+
