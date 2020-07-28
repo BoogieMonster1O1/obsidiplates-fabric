@@ -48,7 +48,7 @@ jar {
 bintray {
 	user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
 	key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
-    	publications = ['mavenJava'] 
+    	publications = ['MyPublication']
     	pkg {
         	repo = 'cool-mods'
         	name = 'obsidiplates-fabric'
@@ -64,7 +64,7 @@ bintray {
 
 publishing {
     publications {
-        mavenJava(MavenPublication) {
+		MyPublication(MavenPublication) {
             artifact(sourcesJar) {
 				builtBy remapSourcesJar
 	    	}
@@ -75,29 +75,8 @@ publishing {
             groupId 'io.github.boogiemonster1o1'
             artifactId 'obsidiplates-fabric'
             version '0.1.0'
-            pom.withXml {
-                def root = asNode()
-                root.appendNode('description', 'Obsidiplates Fabric')
-                root.appendNode('name', 'Obsidiplates Fabric')
-                root.appendNode('url', 'https://site_for_lib.tld')
-                root.children().last() + pomConfig
-            }
-	    
         }
     }
 }
 
-def pomConfig = {
-    licenses {
-        license {
-            name "GPL-3.0-or-later"
-            url "https://www.gnu.org/licenses/gpl-3.0.en.html"
-            distribution "repo"
-        }
-    }
-    
-    scm {
-       url "https://github.com/BoogieMonster1O1/obsidiplates-fabric"
-    }
-}
 
