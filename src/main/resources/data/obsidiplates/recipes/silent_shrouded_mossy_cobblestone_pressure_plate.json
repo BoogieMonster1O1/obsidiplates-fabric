@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#X#",
+    "XDX",
+    "#X#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:glowstone_dust"
+    },
+    "X": {
+      "item": "minecraft:quartz"
+    },
+    "D": {
+      "item": "obsidiplates:silent_mossy_cobblestone_pressure_plate"
+    }
+  },
+  "result": {
+    "item": "obsidiplates:silent_shrouded_mossy_cobblestone_pressure_plate"
+  }
+}

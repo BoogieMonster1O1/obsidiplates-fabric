@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "X"
+  ],
+  "key": {
+    "#": {
+      "item": "obsidiplates:obsidian_pressure_plate"
+    },
+    "X": {
+      "tag": "minecraft:wool"
+    }
+  },
+  "result": {
+    "item": "obsidiplates:silent_obsidian_pressure_plate"
+  }
+}

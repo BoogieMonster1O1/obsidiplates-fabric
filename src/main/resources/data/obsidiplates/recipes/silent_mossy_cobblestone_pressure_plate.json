@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "X"
+  ],
+  "key": {
+    "#": {
+      "item": "obsidiplates:mossy_cobblestone_pressure_plate"
+    },
+    "X": {
+      "tag": "minecraft:wool"
+    }
+  },
+  "result": {
+    "item": "obsidiplates:silent_mossy_cobblestone_pressure_plate"
+  }
+}

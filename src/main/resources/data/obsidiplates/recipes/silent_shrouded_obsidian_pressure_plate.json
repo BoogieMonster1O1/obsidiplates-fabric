@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#X#",
+    "XDX",
+    "#X#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:glowstone_dust"
+    },
+    "X": {
+      "item": "minecraft:qu"
+    },
+    "D": {
+      "item": "obsidiplates:silent_obsidian_pressure_plate"
+    }
+  },
+  "result": {
+    "item": "obsidiplates:silent_shrouded_obsidian_pressure_plate"
+  }
+}
