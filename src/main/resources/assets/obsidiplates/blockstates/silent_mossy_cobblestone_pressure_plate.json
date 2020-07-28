@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "obsidiplates:block/mossy_cobblestone_pressure_plate"
+    },
+    "powered=true": {
+      "model": "obsidiplates:block/mossy_cobblestone_pressure_plate_down"
+    }
+  }
+}

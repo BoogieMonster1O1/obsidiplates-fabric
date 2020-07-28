@@ -4,8 +4,11 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import org.jetbrains.annotations.NotNull;
 
-import net.minecraft.block.*;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.block.AbstractPressurePlateBlock;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.entity.Npc;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
@@ -17,16 +20,15 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
 
-public class ObsidianPressurePlateBlock extends AbstractPressurePlateBlock {
+public class MossyCobblestonePressurePlateBlock extends AbstractPressurePlateBlock {
     public static final BooleanProperty POWERED = Properties.POWERED;
     private static final Box BOX = new Box(0.125D, 0.0D, 0.125D, 0.875D, 0.25D, 0.875D);
     @NotNull
     public PressurePlateType type;
 
-    public ObsidianPressurePlateBlock(@NotNull PressurePlateType type) {
-        super(FabricBlockSettings.of(Material.STONE, MaterialColor.BLACK).requiresTool().breakByHand(false).breakByTool(FabricToolTags.PICKAXES).strength(25.0F, 500.0F));
+    public MossyCobblestonePressurePlateBlock(@NotNull PressurePlateType type) {
+        super(FabricBlockSettings.copyOf(Blocks.STONE_PRESSURE_PLATE));
         this.setDefaultState(this.stateManager.getDefaultState().with(POWERED, false));
         this.type = type;
     }
@@ -54,7 +56,7 @@ public class ObsidianPressurePlateBlock extends AbstractPressurePlateBlock {
         Box box = BOX.offset(pos);
         AtomicInteger ret = new AtomicInteger();
         world.getEntities(null, box).forEach((e) -> {
-            if (e instanceof PlayerEntity) {
+            if (e instanceof Npc) {
                 ret.set(15);
             }
         });

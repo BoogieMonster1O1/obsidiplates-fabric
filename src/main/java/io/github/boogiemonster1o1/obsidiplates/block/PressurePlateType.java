@@ -1,16 +1,16 @@
 package io.github.boogiemonster1o1.obsidiplates.block;
 
 public enum PressurePlateType {
-    NORMAL(false),
-    SILENT(true);
+    NORMAL(true),
+    SILENT(false);
 
-    private final boolean silent;
+    private final boolean sound;
 
-    PressurePlateType(boolean silent) {
-        this.silent = silent;
+    PressurePlateType(boolean sound) {
+        this.sound = sound;
     }
 
-    public boolean isSilent() {
-        return silent;
+    public boolean isNoisy() {
+        return sound;
     }
 }
