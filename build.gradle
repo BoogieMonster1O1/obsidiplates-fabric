@@ -8,7 +8,7 @@ sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
 archivesBaseName = "obsidiplates-fabric"
-version = "0.1.0"
+version = "0.1.1"
 group = "io.github.boogiemonster1o1"
 
 dependencies {
