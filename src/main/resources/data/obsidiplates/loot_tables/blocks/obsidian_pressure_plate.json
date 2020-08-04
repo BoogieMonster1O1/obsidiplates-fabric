@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:obsidian_pressure_plate"
+          "name": "obsidiplates:obsidian_pressure_plate"
         }
       ],
       "conditions": [
