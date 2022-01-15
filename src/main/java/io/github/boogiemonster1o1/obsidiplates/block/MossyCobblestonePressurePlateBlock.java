@@ -55,7 +55,7 @@ public class MossyCobblestonePressurePlateBlock extends AbstractPressurePlateBlo
     protected int getRedstoneOutput(World world, BlockPos pos) {
         Box box = BOX.offset(pos);
         AtomicInteger ret = new AtomicInteger();
-        world.getEntities(null, box).forEach((e) -> {
+        world.getOtherEntities(null, box).forEach((e) -> {
             if (e instanceof Npc) {
                 ret.set(15);
             }
