@@ -2,6 +2,7 @@ package io.github.boogiemonster1o1.obsidiplates.block;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
+import net.minecraft.util.DyeColor;
 import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.block.*;
@@ -26,7 +27,7 @@ public class ObsidianPressurePlateBlock extends AbstractPressurePlateBlock {
     public PressurePlateType type;
 
     public ObsidianPressurePlateBlock(@NotNull PressurePlateType type) {
-        super(FabricBlockSettings.of(Material.STONE, MaterialColor.BLACK).requiresTool().breakByHand(false).breakByTool(FabricToolTags.PICKAXES).strength(25.0F, 500.0F));
+        super(FabricBlockSettings.of(Material.STONE, DyeColor.BLACK).requiresTool().breakByHand(false).breakByTool(FabricToolTags.PICKAXES).strength(25.0F, 500.0F));
         this.setDefaultState(this.stateManager.getDefaultState().with(POWERED, false));
         this.type = type;
     }
@@ -53,7 +54,7 @@ public class ObsidianPressurePlateBlock extends AbstractPressurePlateBlock {
     protected int getRedstoneOutput(World world, BlockPos pos) {
         Box box = BOX.offset(pos);
         AtomicInteger ret = new AtomicInteger();
-        world.getEntities(null, box).forEach((e) -> {
+        world.getOtherEntities(null, box).forEach((e) -> {
             if (e instanceof PlayerEntity) {
                 ret.set(15);
             }

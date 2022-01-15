@@ -1,34 +1,28 @@
 plugins {
-	id 'fabric-loom' version '0.5-SNAPSHOT'
+	id 'fabric-loom' version '0.10-SNAPSHOT'
 	id "com.jfrog.bintray" version "1.7"
 	id "maven-publish"
 }
 
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
 
-archivesBaseName = "obsidiplates-fabric"
-version = "0.1.1"
-group = "io.github.boogiemonster1o1"
+archivesBaseName = project.archives_base_name
+version = project.mod_version
+group = project.maven_group
 
 dependencies {
-	minecraft "com.mojang:minecraft:1.16.1"
-	mappings "net.fabricmc:yarn:1.16.1+build.21:v2"
-	modImplementation "net.fabricmc:fabric-loader:0.9.0+build.204"
-	modImplementation "io.github.prospector:modmenu:1.14.5+build.30"
-	modApi "net.fabricmc.fabric-api:fabric-api:0.16.0+build.384-1.16.1"
+	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	modApi "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 }
 
 processResources {
 	inputs.property "version", project.version
 
-	from(sourceSets.main.resources.srcDirs) {
-		include "fabric.mod.json"
+	filesMatching("fabric.mod.json") {
 		expand "version": project.version
-	}
-
-	from(sourceSets.main.resources.srcDirs) {
-		exclude "fabric.mod.json"
 	}
 }
 
@@ -51,12 +45,12 @@ bintray {
     	publications = ['MyPublication']
     	pkg {
         	repo = 'cool-mods'
-        	name = 'obsidiplates-fabric'
+        	name = project.archivesBaseName
         	licenses = ['GPL-3.0-or-later']
         	vcsUrl = 'https://github.com/BoogieMonster1O1/obsidiplates-fabric'
 			version {
-        		name = 'Obsidiplates 0.1.0'
-        		desc = 'Obsidiplates for Fabric, version 0.1.0'
+        		name = "Obsidiplates ${project.version}"
+        		desc = "Obsidiplates for Fabric, version ${project.version}"
         		released  = new Date()
     		}
     	}
@@ -72,9 +66,9 @@ publishing {
 				builtBy remapJar
 	    	}
 
-            groupId 'io.github.boogiemonster1o1'
-            artifactId 'obsidiplates-fabric'
-            version '0.1.0'
+            groupId project.group
+            artifactId project.archivesBaseName
+            version project.version
         }
     }
 }
