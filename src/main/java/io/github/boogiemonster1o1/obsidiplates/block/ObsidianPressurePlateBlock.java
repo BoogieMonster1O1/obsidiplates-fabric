@@ -18,7 +18,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
 
 public class ObsidianPressurePlateBlock extends AbstractPressurePlateBlock {
     public static final BooleanProperty POWERED = Properties.POWERED;
@@ -27,7 +26,7 @@ public class ObsidianPressurePlateBlock extends AbstractPressurePlateBlock {
     public PressurePlateType type;
 
     public ObsidianPressurePlateBlock(@NotNull PressurePlateType type) {
-        super(FabricBlockSettings.of(Material.STONE, DyeColor.BLACK).requiresTool().breakByHand(false).breakByTool(FabricToolTags.PICKAXES).strength(25.0F, 500.0F));
+        super(FabricBlockSettings.of(Material.STONE, DyeColor.BLACK).requiresTool().strength(25.0F, 500.0F));
         this.setDefaultState(this.stateManager.getDefaultState().with(POWERED, false));
         this.type = type;
     }

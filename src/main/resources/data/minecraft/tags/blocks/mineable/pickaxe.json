@@ -1,0 +1,13 @@
+{
+	"replace": false,
+	"values": [
+		"obsidiplates:obsidian_pressure_plate",
+		"obsidiplates:shrouded_obsidian_pressure_plate",
+		"obsidiplates:silent_obsidian_pressure_plate",
+		"obsidiplates:silent_shrouded_obsidian_pressure_plate",
+		"obsidiplates:mossy_cobblestone_pressure_plate",
+		"obsidiplates:shrouded_mossy_cobblestone_pressure_plate",
+		"obsidiplates:silent_mossy_cobblestone_pressure_plate",
+		"obsidiplates:silent_shrouded_mossy_cobblestone_pressure_plate"
+	]
+}
